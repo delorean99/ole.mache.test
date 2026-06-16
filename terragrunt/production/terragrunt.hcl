@@ -3,32 +3,31 @@ include {
 }
 
 inputs = {
+  gitea_url  = "https://gitea.company.com"
+  gitea_token = get_env("GITEA_TOKEN")
+  
   users = [
     {
       username = "admin"
-      email    = "admin@example.com"
+      email    = "admin@company.com"
       name     = "Admin User"
       is_admin = true
-    },
+    }
+  ]
+  
+  organizations = [
     {
-      username = "developer1"
-      email    = "dev1@example.com"
-      name     = "Developer One"
+      name        = "engineering"
+      description = "Engineering team"
     }
   ]
   
   repositories = [
     {
       name        = "infrastructure"
-      owner       = "admin"
+      owner       = "engineering"
       private     = true
-      description = "Production infrastructure code"
-    },
-    {
-      name        = "app-backend"
-      owner       = "developer1"
-      private     = true
-      description = "Backend application repository"
+      description = "Infrastructure as Code"
     }
   ]
 }
