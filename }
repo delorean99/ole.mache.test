@@ -1,0 +1,6 @@
+
+## Requirements
+
+- Terraform >= 1.0
+- Gitea Provider ~> 0.10
+- Valid Gitea API token with admin privileges
