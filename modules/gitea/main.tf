@@ -1,19 +1,3 @@
-terraform {
-  required_version = ">= 1.0"
-  
-  required_providers {
-    gitea = {
-      source  = "go-gitea/gitea"
-      version = "~> 0.10"
-    }
-  }
-}
-
-provider "gitea" {
-  base_url = var.gitea_url
-  token    = var.gitea_token
-}
-
 # Users
 resource "gitea_user" "this" {
   for_each = { for user in var.users : user.username => user }
