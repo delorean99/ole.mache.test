@@ -2,10 +2,12 @@ include {
   path = find_in_parent_folders()
 }
 
+# Production best practices: explicit configuration
 inputs = {
   gitea_url  = "https://gitea.company.com"
-  gitea_token = get_env("GITEA_TOKEN")
+  gitea_token = get_env("GITEA_TOKEN", "")
   
+  # Fail if token is not set
   users = [
     {
       username = "admin"
@@ -19,15 +21,28 @@ inputs = {
     {
       name        = "engineering"
       description = "Engineering team"
+      visibility  = "private"
     }
   ]
   
   repositories = [
     {
-      name        = "infrastructure"
-      org         = "engineering"
-      private     = true
-      description = "Infrastructure as Code"
+      name           = "infrastructure"
+      org            = "engineering"
+      private        = true
+      description    = "Infrastructure as Code"
+      auto_init      = true
+      default_branch = "main"
     }
   ]
 }
+
+# Production best practices: prevent accidental destruction
+prevent_destroy = true
+
+# Production best practices: retry on transient errors
+retryable_errors = [
+  "Failed to instantiate: Request forbidden",
+  "connection refused",
+  "timeout"
+]

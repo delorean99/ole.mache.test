@@ -1,0 +1,5 @@
+# Code owners for Gitea Terraform module
+
+modules/gitea/* @platform-team
+terragrunt/production/* @platform-team @devops-team
+terragrunt/staging/* @devops-team
