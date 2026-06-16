@@ -7,26 +7,33 @@ inputs = {
     {
       username = "admin"
       email    = "admin@example.com"
-      name     = "Admin User"
+      full_name = "Admin User"
       is_admin = true
     },
     {
       username = "tester1"
       email    = "test1@example.com"
-      name     = "Tester One"
+      full_name = "Tester One"
+    }
+  ]
+  
+  organizations = [
+    {
+      name        = "staging-org"
+      description = "Staging organization"
     }
   ]
   
   repositories = [
     {
       name        = "infrastructure"
-      owner       = "admin"
+      org         = "staging-org"
       private     = true
       description = "Staging infrastructure code"
     },
     {
       name        = "app-testing"
-      owner       = "tester1"
+      org         = "staging-org"
       private     = true
       description = "Testing repository"
     }

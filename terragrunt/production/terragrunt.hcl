@@ -10,7 +10,7 @@ inputs = {
     {
       username = "admin"
       email    = "admin@company.com"
-      name     = "Admin User"
+      full_name = "Admin User"
       is_admin = true
     }
   ]
@@ -25,7 +25,7 @@ inputs = {
   repositories = [
     {
       name        = "infrastructure"
-      owner       = "engineering"
+      org         = "engineering"
       private     = true
       description = "Infrastructure as Code"
     }

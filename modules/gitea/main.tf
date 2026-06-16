@@ -44,13 +44,18 @@ resource "gitea_team" "this" {
 # Team Members
 resource "gitea_team_member" "this" {
   for_each = {
-    for team in var.teams :
-    "${team.org}-${team.name}" => team
-    if length(lookup(team, "members", [])) > 0
+    for pair in flatten([
+      for team in var.teams : [
+        for member in lookup(team, "members", []) : {
+          team_key  = "${team.org}-${team.name}"
+          username  = member
+        }
+      ]
+    ]) : "${pair.team_key}-${pair.username}" => pair
   }
   
-  team_id  = gitea_team.this[each.key].id
-  username = each.value.members
+  team_id  = gitea_team.this[each.value.team_key].id
+  username = each.value.username
 }
 
 # Repositories
